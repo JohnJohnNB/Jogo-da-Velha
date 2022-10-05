@@ -47,7 +47,7 @@ function vencedor(jogadas, jogador) {
             return false
         }
     })
-    if(result == true){
+    if(result == true || check_if_draw == 9){
         var resposta = document.getElementById('resposta')
         var botao = document.createElement('input')
         botao.setAttribute('type', 'button')
@@ -55,21 +55,13 @@ function vencedor(jogadas, jogador) {
         botao.setAttribute('id', 'restart')
         botao.addEventListener('click', restart)
         var text = document.createElement('p')
-        text.innerHTML = `O vencedor é ${jogador} !`
+        if(result == true) {
+            text.innerHTML = `O vencedor é ${jogador} !`
+        } else {
+            result = true
+            text.innerHTML = `Não há vencedor, empate!`
+        }
         resposta.appendChild(text)
         resposta.appendChild(botao)
-    } else if (check_if_draw == 9){
-        result = true
-        var resposta = document.getElementById('resposta')
-        var botao = document.createElement('input')
-        botao.setAttribute('type', 'button')
-        botao.setAttribute('value', 'Recomeçar')
-        botao.setAttribute('id', 'restart')
-        botao.addEventListener('click', restart)
-        var text = document.createElement('p')
-        text.innerHTML = `Não há vencedor, empate!`
-        resposta.appendChild(text)
-        resposta.appendChild(botao)
-    }
+    } 
 }
-
